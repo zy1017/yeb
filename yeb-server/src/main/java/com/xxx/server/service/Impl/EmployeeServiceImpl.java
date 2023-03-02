@@ -93,8 +93,8 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
             mailLogMapper.insert(mailLog);
 
             // 发送邮件信息
-            rabbitTemplate.convertAndSend("MailConstants.MAIL_EXCHANGE_NAME",MailConstants.MAIL_ROUTING_KEY_NAME,
-                    emp,new CorrelationData(msgId));
+            rabbitTemplate.convertAndSend(MailConstants.MAIL_EXCHANGE_NAME, MailConstants.MAIL_ROUTING_KEY_NAME,
+                    emp, new CorrelationData(msgId));
 
             return ResponseBean.success("添加员工成功!!");
         }
